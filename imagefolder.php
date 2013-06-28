@@ -30,11 +30,17 @@ class PlgSystemImageFolder extends JPlugin
      * @param JObject $data
      */
     function onContentPrepareForm($form, $data) {
+        $app = JFactory::getApplication();
+        $option = $app->input->get('option');
+        $view = $app->input->get('view');
+        $layout = $app->input->get('layout');
 
-        JFactory::getLanguage()->load('plg_system_imagefolder', JPATH_SITE . '/plugins/system/imagefolder', null, true);
+        if($option == 'com_content' && $view == 'article' && $layout == 'edit') {
+            JFactory::getLanguage()->load('plg_system_imagefolder', JPATH_SITE . '/plugins/system/imagefolder', null, true);
 
-        JForm::addFormPath(dirname(__FILE__).'/article');
-        $form->loadFile('article', false);
+            JForm::addFormPath(dirname(__FILE__).'/article');
+            $form->loadFile('article', false);
+        }
     }
 
 }
