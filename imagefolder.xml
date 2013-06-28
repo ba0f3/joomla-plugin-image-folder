@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1" type="plugin" group="system">
+	<name>plg_system_imagefolder</name>
+	<author>Bruce Doan</author>
+	<creationDate>Jun 29 2013</creationDate>
+	<copyright>Copyright (C) 2013 Bruce Doan. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>bruce@opensystemslab.com</authorEmail>
+	<authorUrl>http://opensystemslab.com</authorUrl>
+	<version>1.0.0</version>
+	<description>PLG_IMAGEFOLDER_XML_DESCRIPTION</description>
+	<files>
+        <folder>article</folder>
+        <folder>language</folder>
+        <filename plugin="imagefolder">imagefolder.php</filename>
+		<filename>index.html</filename>
+	</files>
+</extension>
