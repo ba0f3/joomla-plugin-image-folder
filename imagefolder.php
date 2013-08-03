@@ -53,10 +53,9 @@ class PlgSystemImageFolder extends JPlugin
     function onContentBeforeSave($context, $article, $isNew) {
         $app = JFactory::getApplication();
         $option = $app->input->get('option');
-        $view = $app->input->get('view');
         $layout = $app->input->get('layout');
 
-        if($option == 'com_content' && $view == 'article' && $layout == 'edit') {
+        if($option == 'com_content' && $layout == 'edit') {
             $imagefolder = $_POST['jform']['images']['imagefolder'];
             $images = json_decode($article->images);
             $images->imagefolder = $imagefolder;
