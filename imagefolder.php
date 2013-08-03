@@ -1,9 +1,9 @@
 <?php
 /**
  * @package     Joomla.Plugin
- * @subpackage  System.cache
+ * @subpackage  System.imagefolder
  *
- * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2013 Bruce Doan. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -28,6 +28,7 @@ class PlgSystemImageFolder extends JPlugin
     /**
      * @param JForm $form
      * @param JObject $data
+     * @return boolean
      */
     function onContentPrepareForm($form, $data) {
         $app = JFactory::getApplication();
@@ -43,4 +44,24 @@ class PlgSystemImageFolder extends JPlugin
         }
     }
 
+    /**
+     * @param string $context
+     * @param JTableContent $article
+     * @param boolean $isNew
+     * @return boolean
+     */
+    function onContentBeforeSave($context, $article, $isNew) {
+        $app = JFactory::getApplication();
+        $option = $app->input->get('option');
+        $view = $app->input->get('view');
+        $layout = $app->input->get('layout');
+
+        if($option == 'com_content' && $view == 'article' && $layout == 'edit') {
+            $imagefolder = $_POST['jform']['images']['imagefolder'];
+            $images = json_decode($article->images);
+            $images->imagefolder = $imagefolder;
+
+            $article->images = json_encode($images);
+        }
+    }
 }
